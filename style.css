@@ -1,0 +1,80 @@
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    color: #FDFEFF;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #1D2025;
+    gap: 2vw;
+}
+
+.series-header {
+    width: 22.5vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*background-color: blue;*/
+    gap: 4rem;
+}
+
+.series-title {
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.series-poster {
+    width: 12vw;
+}
+
+.series-information {
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    gap: 1.5rem;
+}
+
+.subheadding {
+    font-size: large;
+    color: #8C8F94;
+}
+
+.episodes-matrix {
+    width: 72.5vw;
+    height: 95vh;
+    /*background-color: red;*/
+}
+
+.indicator {
+    width: 10.5ch;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+}
+
+.episode {
+    width: 10.5ch;
+    font-size: large;
+    padding: 1.5rem 2.5rem;
+    border-radius: .25rem;
+    background-color: #29A746;
+}
+
+/* Colors */
+.great      { background-color: #27A746; }
+.good       { background-color: #74E28F; }
+.regular    { background-color: #F7D264; }
+.bad        { background-color: #B42829; }
+.terrible   { background-color: #A9306D; }
