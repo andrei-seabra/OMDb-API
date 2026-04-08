@@ -14,7 +14,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #1D2025;
-    
     gap: 1vw;
 }
 
@@ -56,10 +55,17 @@ body {
     gap: 1rem;
 }
 
-.indicator {
+.season-indicator {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: large;
+}
+
+.episode-indicator {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     font-size: large;
 }
 

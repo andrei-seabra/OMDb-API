@@ -1,3 +1,6 @@
+const SERIES_ID = "tt0903747";
+const API_KEY = "90019fb6";
+
 let totalEpisodes = 0;
 let loadedSeasons = 0;
 let seasonsData = [];
@@ -25,7 +28,7 @@ function showEpisodesMatrix() {
     const episodesMatrix = document.querySelector("#episodes-matrix");
 
     for (let s = 1; s <= totalSeasons; s++) {
-        fetch(`https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747&Season=${s}`)
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${SERIES_ID}&Season=${s}`)
             .then(response => response.json())
             .then(season => {
                 getTotalEpisodes(season);
@@ -38,7 +41,7 @@ function showEpisodesMatrix() {
 
                     for (let e = 1; e < totalEpisodes; e++) {
                         const indicator = document.createElement("p");
-                        indicator.classList.add("indicator");
+                        indicator.classList.add("episode-indicator");
                         indicator.textContent = e;
 
                         indicator.style.gridRow = 1;
@@ -49,7 +52,7 @@ function showEpisodesMatrix() {
 
                     for (let ss = 1; ss < totalSeasons; ss++) {
                          const indicator = document.createElement("p");
-                        indicator.classList.add("indicator");
+                        indicator.classList.add("season-indicator");
                         indicator.textContent = `T${ss}`;
 
                         indicator.style.gridRow = ss + 1;
@@ -92,7 +95,7 @@ function showEpisodesMatrix() {
     }
 }
 
-fetch("https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747")
+fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${SERIES_ID}`)
     .then(response => response.json())
     .then(series => {
         showHeaderInformation(series);
