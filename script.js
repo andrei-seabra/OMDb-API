@@ -1,4 +1,6 @@
 let totalEpisodes = 0;
+let loadedSeasons = 0;
+let seasonsData = [];
 let totalSeasons;
 
 function showHeaderInformation(series) {
@@ -19,52 +21,82 @@ function getTotalEpisodes(season) {
     }
 }
 
-function showEpisodesMatrix(series) {
+function showEpisodesMatrix() {
     const episodesMatrix = document.querySelector("#episodes-matrix");
-    episodesMatrix.style.gridTemplateRows = `repeat(${++totalSeasons}, 1fr)`;
 
-    for (let i = 1; i < totalSeasons; i++) {
-        fetch(`https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747&Season=${i}`)
+    for (let s = 1; s <= totalSeasons; s++) {
+        fetch(`https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747&Season=${s}`)
             .then(response => response.json())
             .then(season => {
                 getTotalEpisodes(season);
-                episodesMatrix.style.gridTemplateColumns = `repeat(${++totalEpisodes}, 1fr)`;
+                seasonsData[s - 1] = season;
+                loadedSeasons++;
 
-                season.Episodes.forEach(episode => {
-                    const rating = episode.imdbRating;
+                if (loadedSeasons == totalSeasons) {
+                    episodesMatrix.style.gridTemplateRows = `repeat(${++totalSeasons}, 1fr)`;
+                    episodesMatrix.style.gridTemplateColumns = `repeat(${++totalEpisodes}, 1fr)`;
 
-                    const episodeCard = document.createElement("p");
-                    episodeCard.classList.add("episode");
-                    episodeCard.textContent = `${rating}`;
+                    for (let e = 1; e < totalEpisodes; e++) {
+                        const indicator = document.createElement("p");
+                        indicator.classList.add("indicator");
+                        indicator.textContent = e;
 
-                    if (rating >= 9) {
-                        episodeCard.classList.add("great");
-                    } else if (rating >= 8) {
-                        episodeCard.classList.add("good");
-                    } else if (rating >= 6) {
-                        episodeCard.classList.add("regular");
-                    } else if (rating > 4) {
-                        episodeCard.classList.add("bad");
-                    } else {
-                        episodeCard.classList.add("terrible");
+                        indicator.style.gridRow = 1;
+                        indicator.style.gridColumn = e + 1;
+
+                        episodesMatrix.appendChild(indicator);
                     }
 
-                    episodesMatrix.appendChild(episodeCard);
+                    for (let ss = 1; ss < totalSeasons; ss++) {
+                         const indicator = document.createElement("p");
+                        indicator.classList.add("indicator");
+                        indicator.textContent = `T${ss}`;
+
+                        indicator.style.gridRow = ss + 1;
+                        indicator.style.gridColumn = 1;
+
+                        episodesMatrix.appendChild(indicator);
+                    }
+                }
+
+                seasonsData.forEach((season, sIndex) => {
+                    season.Episodes.forEach((episode, eIndex) => {
+                        const rating = episode.imdbRating;
+
+                        const episodeCard = document.createElement("p");
+                        episodeCard.classList.add("episode");
+                        episodeCard.textContent = rating;
+
+                        if (rating >= 9) {
+                            episodeCard.classList.add("great");
+                        } else if (rating >= 8) {
+                            episodeCard.classList.add("good");
+                        } else if (rating >= 6) {
+                            episodeCard.classList.add("regular");
+                        } else if (rating > 4) {
+                            episodeCard.classList.add("bad");
+                        } else {
+                            episodeCard.classList.add("terrible");
+                        }
+
+                        episodeCard.style.gridRow = sIndex + 2;
+                        episodeCard.style.gridColumn = eIndex + 2;
+
+                        episodesMatrix.appendChild(episodeCard);
+                    })
                 })
             })
             .catch(error => {
                 console.log(error);
             })
     }
-
-    showEpisodeNumbers(episodesMatrix);
 }
 
 fetch("https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747")
     .then(response => response.json())
     .then(series => {
         showHeaderInformation(series);
-        showEpisodesMatrix(series);
+        showEpisodesMatrix();
     })
     .catch(error => {
         console.log(error);

@@ -14,8 +14,8 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #1D2025;
-    overflow: hidden;
-    gap: 2vw;
+    
+    gap: 1vw;
 }
 
 .series-header {
