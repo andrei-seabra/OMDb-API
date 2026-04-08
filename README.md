@@ -3,3 +3,6 @@
 
 # Rota da API
 `https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747&plot=full`
+
+# Rota episódios
+`https://www.omdbapi.com/?apikey=90019fb6&i=tt0903747&Season=1`

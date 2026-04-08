@@ -14,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #1D2025;
+    overflow: hidden;
     gap: 2vw;
 }
 
@@ -24,7 +25,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*background-color: blue;*/
     gap: 4rem;
 }
 
@@ -51,25 +51,24 @@ body {
 
 .episodes-matrix {
     width: 72.5vw;
-    height: 95vh;
-    /*background-color: red;*/
+    height: 41.5vh;
+    display: grid;
+    gap: 1rem;
 }
 
 .indicator {
-    width: 10.5ch;
-    font-size: large;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 2.5rem;
+    font-size: large;
 }
 
 .episode {
-    width: 10.5ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: large;
-    padding: 1.5rem 2.5rem;
     border-radius: .25rem;
-    background-color: #29A746;
 }
 
 /* Colors */
